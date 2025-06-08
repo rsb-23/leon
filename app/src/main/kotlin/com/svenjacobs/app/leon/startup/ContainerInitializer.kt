@@ -70,6 +70,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeMusicSanitiz
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeRedirectSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeShortUrlSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.allquery.AllQuerySanitizer
 import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
 import kotlinx.collections.immutable.persistentListOf
 
@@ -80,6 +81,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 			appContext = context,
 			sanitizerRepositoryProvider = { SanitizerRepositoryImpl() },
 			sanitizers = persistentListOf(
+				AllQuerySanitizer(),
 				AliexpressSanitizer(),
 				AmazonProductSanitizer(),
 				AmazonSanitizer(),
