@@ -40,9 +40,11 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleAnalyticsSanit
 import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.google.GoogleStoreSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.heise.HeiseSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.ikea.IkeaSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.instagram.InstagramSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.jdoqocy.JdoqocySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.jodel.JodelSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.kogan.KoganSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.lazada.LazadaSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.linksynergy.LinkSynergySanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.mydealz.MyDealzParametersSanitizer
@@ -70,7 +72,6 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeMusicSanitiz
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeRedirectSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.youtube.YoutubeShortUrlSanitizer
-import com.svenjacobs.app.leon.core.domain.sanitizer.allquery.AllQuerySanitizer
 import com.svenjacobs.app.leon.sanitizer.SanitizerRepositoryImpl
 import kotlinx.collections.immutable.persistentListOf
 
@@ -81,7 +82,6 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 			appContext = context,
 			sanitizerRepositoryProvider = { SanitizerRepositoryImpl() },
 			sanitizers = persistentListOf(
-				AllQuerySanitizer(),
 				AliexpressSanitizer(),
 				AmazonProductSanitizer(),
 				AmazonSanitizer(),
@@ -102,9 +102,11 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				GoogleSearchSanitizer(),
 				GoogleStoreSanitizer(),
 				HeiseSanitizer(),
+				IkeaSanitizer(),
 				InstagramSanitizer(),
 				JdoqocySanitizer(),
 				JodelSanitizer(),
+				KoganSanitizer(),
 				LazadaSanitizer(),
 				LinkSynergySanitizer(),
 				MyDealzParametersSanitizer(),
