@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2024 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,27 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.core.domain.sanitizer.threads
+package com.svenjacobs.app.leon.core.domain.sanitizer.cargurus
 
 import android.content.Context
-import com.svenjacobs.app.leon.core.common.domain.matchesDomain
+import com.svenjacobs.app.leon.core.common.domain.matchesDomainRegex
 import com.svenjacobs.app.leon.core.common.regex.RegexFactory
 import com.svenjacobs.app.leon.core.domain.R
 import com.svenjacobs.app.leon.core.domain.sanitizer.RegexSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
-class ThreadsSanitizer :
+class CarGurusSanitizer :
 	RegexSanitizer(
-		regex = RegexFactory.AllParameters,
+		regex = RegexFactory.exceptParameter("(listingId|entitySelectingHelper\\.selectedEntity)"),
 	) {
 
-	override val id = SanitizerId("threads")
+	override val id = SanitizerId("cargurus")
 
 	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = context.getString(R.string.sanitizer_threads),
+		name = context.getString(R.string.sanitizer_cargurus_name),
 	)
 
-	override fun matchesDomain(input: String) =
-		input.matchesDomain("threads.net") || input.matchesDomain("threads.com")
+	override fun matchesDomain(input: String) = input.matchesDomainRegex("cargurus\\.co\\.uk/")
 }

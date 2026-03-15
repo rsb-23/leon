@@ -18,12 +18,13 @@
 
 @file:Suppress("UnstableApiUsage")
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 val catalogs = extensions.getByType<VersionCatalogsExtension>()
 val libs: VersionCatalog = catalogs.named("libs")
 
 plugins {
 	id("com.android.library")
-	kotlin("android")
 	id("org.jetbrains.kotlin.plugin.compose")
 }
 
@@ -46,10 +47,6 @@ android {
 		targetCompatibility = JavaVersion.VERSION_17
 	}
 
-	kotlinOptions {
-		jvmTarget = "17"
-	}
-
 	buildFeatures {
 		compose = true
 	}
@@ -58,6 +55,12 @@ android {
 		unitTests.all {
 			it.useJUnitPlatform()
 		}
+	}
+}
+
+kotlin {
+	compilerOptions {
+		jvmTarget = JvmTarget.JVM_17
 	}
 }
 
@@ -74,9 +77,9 @@ dependencies {
 	api(libs.findLibrary("kotlin.stdlib.jdk8").get())
 	api(libs.findBundle("androidx.compose").get())
 
-	testApi(libs.findLibrary("kotest.runner.junit5").get())
-	testApi(libs.findLibrary("kotest.assertions.core").get())
-	testApi(libs.findLibrary("mockk").get())
+	testImplementation(libs.findLibrary("kotest.runner.junit5").get())
+	testImplementation(libs.findLibrary("kotest.assertions.core").get())
+	testImplementation(libs.findLibrary("mockk").get())
 
-	androidTestApi(composeBom)
+	androidTestImplementation(composeBom)
 }

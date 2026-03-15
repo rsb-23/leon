@@ -1,6 +1,6 @@
 /*
  * Léon - The URL Cleaner
- * Copyright (C) 2023 Sven Jacobs
+ * Copyright (C) 2025 Sven Jacobs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,39 +16,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.svenjacobs.app.leon.core.domain.sanitizer.threads
+package com.svenjacobs.app.leon.core.domain.sanitizer.substack
 
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
-class ThreadsSanitizerTest :
+class SubstackSanitizerTest :
 	WordSpec(
 		{
-			val sanitizer = ThreadsSanitizer()
+			val sanitizer = SubstackSanitizer()
 
 			"invoke" should {
 
-				"remove all parameters from threads.net" {
+				"remove parameters from substack.com" {
 					sanitizer(
-						"https://www.threads.net/t/CufR4M8yNdJ/?igshid=NTc4MTIwNjQ2YQ==",
-					) shouldBe "https://www.threads.net/t/CufR4M8yNdJ/"
+						"https://substack.com/@sebastianbarros/note/c-190523061?r=c0obe&utm_source=notes-share-action&utm_medium=web",
+					) shouldBe "https://substack.com/@sebastianbarros/note/c-190523061"
 				}
 
-				"remove all parameters from threads.com" {
+				"remove parameters from open.substack.com" {
 					sanitizer(
-						"https://www.threads.com/@chpapa/post/DSzhvqtkuyg?xmt=AQF0J2-TPDkD-qhbXb7usPu3mcJy6Tz8R0LhCkenCCvSOg",
-					) shouldBe "https://www.threads.com/@chpapa/post/DSzhvqtkuyg"
+						"https://open.substack.com/pub/fosspost/p/open-up-your-android-smartphone?utm_campaign=post-expanded-share&utm_medium=web",
+					) shouldBe "https://open.substack.com/pub/fosspost/p/open-up-your-android-smartphone"
 				}
 			}
 
 			"matchesDomain" should {
 
-				"match threads.net" {
-					sanitizer.matchesDomain("https://threads.net") shouldBe true
+				"match substack.com" {
+					sanitizer.matchesDomain("https://substack.com") shouldBe true
 				}
 
-				"match threads.com" {
-					sanitizer.matchesDomain("https://www.threads.com") shouldBe true
+				"match open.substack.com" {
+					sanitizer.matchesDomain("https://open.substack.com") shouldBe true
 				}
 			}
 		},

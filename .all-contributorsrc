@@ -472,6 +472,52 @@
         "code",
         "bug"
       ]
+    },
+    {
+      "login": "danlamanna",
+      "name": "Dan LaManna",
+      "avatar_url": "https://avatars.githubusercontent.com/u/608229?v=4",
+      "profile": "http://danlamanna.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kowalcj0",
+      "name": "Janusz Kowalczyk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/910451?v=4",
+      "profile": "https://kowalcj0.github.io/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "anthonylau",
+      "name": "Anthony Lau",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4386608?v=4",
+      "profile": "https://github.com/anthonylau",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rsb-23",
+      "name": "Mr. RB",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57601627?v=4",
+      "profile": "https://projects.tchh.in/",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "IzzySoft",
+      "name": "Izzy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6781438?v=4",
+      "profile": "https://android.izzysoft.de/",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -479,6 +525,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "leon",
-  "projectOwner": "svenjacobs",
+  "projectOwner": "leon-cleaning-services",
   "commitType": "docs"
 }

@@ -25,6 +25,8 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonProductSanitiz
 import com.svenjacobs.app.leon.core.domain.sanitizer.amazon.AmazonSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.aol.AolSearchSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.at.AtAnalyticsSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.autotrader.AutoTraderSanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.cargurus.CarGurusSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.change.ChangeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.cx.CxAnalyticsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.ebay.EbaySanitizer
@@ -60,6 +62,7 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.sessionids.SessionIdsSaniti
 import com.svenjacobs.app.leon.core.domain.sanitizer.shopee.ShopeeSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.spiegel.SpiegelSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.spotify.SpotifySanitizer
+import com.svenjacobs.app.leon.core.domain.sanitizer.substack.SubstackSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.theguardian.TheGuardianSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.threads.ThreadsSanitizer
 import com.svenjacobs.app.leon.core.domain.sanitizer.tiktok.TiktokSanitizer
@@ -87,6 +90,8 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				AmazonSanitizer(),
 				AolSearchSanitizer(),
 				AtAnalyticsSanitizer(),
+				AutoTraderSanitizer(),
+				CarGurusSanitizer(),
 				ChangeSanitizer(),
 				CxAnalyticsSanitizer(),
 				EbaySanitizer(),
@@ -122,6 +127,7 @@ class ContainerInitializer : DistinctInitializer<Unit> {
 				ShopeeSanitizer(),
 				SpiegelSanitizer(),
 				SpotifySanitizer(),
+				SubstackSanitizer(),
 				TheGuardianSanitizer(),
 				ThreadsSanitizer(),
 				TiktokSanitizer(),

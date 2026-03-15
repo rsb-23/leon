@@ -22,6 +22,8 @@
     <string name="sanitizer_amazon_product_name">Amazon Products</string>
     <string name="sanitizer_aol_search_name">AOL Search</string>
     <string name="sanitizer_at_analytics_name" translatable="false">AT Analytics</string>
+    <string name="sanitizer_autotrader_name" translatable="false">AutoTrader</string>
+    <string name="sanitizer_cargurus_name" translatable="false">CarGurus</string>
     <string name="sanitizer_change_name" translatable="false">Change</string>
     <string name="sanitizer_cx_name" translatable="false">CX Analytics</string>
     <string name="sanitizer_ebay_name" translatable="false">eBay</string>
@@ -57,8 +59,9 @@
     <string name="sanitizer_shopee" translatable="false">Shopee</string>
     <string name="sanitizer_spiegel_name" translatable="false">Spiegel</string>
     <string name="sanitizer_spotify_name" translatable="false">Spotify</string>
+    <string name="sanitizer_substack" translatable="false">Substack</string>
     <string name="sanitizer_theguardian" translatable="false">The Guardian</string>
-    <string name="sanitizer_threads" translatable="false">Threads.net</string>
+    <string name="sanitizer_threads" translatable="false">Threads</string>
     <string name="sanitizer_tiktok_name" translatable="false">TikTok</string>
     <string name="sanitizer_webtrekk_name" translatable="false">Webtrekk</string>
     <string name="sanitizer_wikipedia_name" translatable="false">Wikipedia</string>
