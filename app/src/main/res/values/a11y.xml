@@ -19,4 +19,5 @@
 <resources>
     <string name="a11y_howto">Depiction of a smartphone explaining application</string>
     <string name="a11y_back_navigation">Icon which navigates back</string>
+    <string name="a11y_collapse">Up/Down Arrow Icon</string>
 </resources>

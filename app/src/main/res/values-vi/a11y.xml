@@ -19,4 +19,5 @@
 <resources>
     <string name="a11y_howto">Mô tả ứng dụng giải thích trên điện thoại thông minh</string>
     <string name="a11y_back_navigation">Biểu tượng điều hướng trở lại</string>
+    <string name="a11y_collapse">Up/Down Arrow Icon</string>
 </resources>

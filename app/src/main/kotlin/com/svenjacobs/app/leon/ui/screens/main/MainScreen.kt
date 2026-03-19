@@ -26,14 +26,12 @@ import android.content.Intent
 import android.net.Uri
 import android.view.Window
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
@@ -57,16 +55,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ClipEntry
 import androidx.compose.ui.platform.LocalClipboard
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.toClipEntry
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
@@ -79,11 +72,14 @@ import com.svenjacobs.app.leon.R
 import com.svenjacobs.app.leon.core.domain.action.ActionAfterClean
 import com.svenjacobs.app.leon.ui.common.isDefaultBrowser
 import com.svenjacobs.app.leon.ui.common.views.TopAppBar
+import com.svenjacobs.app.leon.ui.screens.main.model.ButtonConfig
+import com.svenjacobs.app.leon.ui.screens.main.model.ImageConfig
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel
 import com.svenjacobs.app.leon.ui.screens.main.model.MainScreenViewModel.UiState.Result
 import com.svenjacobs.app.leon.ui.screens.main.model.Screen
 import com.svenjacobs.app.leon.ui.screens.main.views.BackgroundImage
 import com.svenjacobs.app.leon.ui.screens.main.views.BottomBar
+import com.svenjacobs.app.leon.ui.screens.main.views.HowToCard
 import com.svenjacobs.app.leon.ui.screens.settings.SettingsScreen
 import com.svenjacobs.app.leon.ui.theme.AppTheme
 import kotlinx.collections.immutable.persistentListOf
@@ -451,47 +447,39 @@ private fun SwitchRow(
 
 @Composable
 private fun HowToBody(modifier: Modifier = Modifier, onImportFromClipboardClick: () -> Unit) {
-	Card(
-		modifier = modifier.fillMaxWidth(),
+	Column(
+		modifier = modifier,
+		verticalArrangement = Arrangement.spacedBy(12.dp),
 	) {
-		Column(
-			modifier = Modifier.padding(16.dp),
-		) {
-			OutlinedButton(
-				modifier = Modifier.fillMaxWidth(),
+		HowToCard(
+			title = stringResource(R.string.from_clipboard_head),
+			description = stringResource(R.string.from_clipboard_text),
+			isCollapsible = false,
+			initiallyExpanded = true,
+
+			button = ButtonConfig(
+				text = stringResource(R.string.import_from_clipboard),
 				onClick = onImportFromClipboardClick,
-			) {
-				Text(
-					text = stringResource(R.string.import_from_clipboard),
-					style = MaterialTheme.typography.bodyMedium,
-				)
-			}
+			),
+		)
 
-			Text(
-				modifier = Modifier.padding(
-					top = 16.dp,
-					bottom = 8.dp,
-				),
-				text = stringResource(R.string.how_to_title),
-				style = MaterialTheme.typography.headlineSmall,
-			)
+		HowToCard(
+			title = stringResource(R.string.from_share_head),
+			description = stringResource(R.string.from_share_text),
+			image = ImageConfig(
+				imgId = R.drawable.howto_pixel_5,
+				contentDescription = stringResource(R.string.a11y_howto),
+			),
+		)
 
-			Row {
-				Image(
-					modifier = Modifier
-						.height(300.dp)
-						.padding(end = 16.dp),
-					painter = painterResource(R.drawable.howto_pixel_5),
-					contentDescription = stringResource(R.string.a11y_howto),
-				)
-
-				Text(
-					modifier = Modifier,
-					textAlign = TextAlign.Justify,
-					text = stringResource(R.string.how_to_text),
-				)
-			}
-		}
+		HowToCard(
+			title = stringResource(R.string.from_inplace_head),
+			description = stringResource(R.string.from_inplace_text),
+			image = ImageConfig(
+				imgId = R.drawable.howto_inplace,
+				contentDescription = stringResource(R.string.a11y_howto),
+			),
+		)
 	}
 }
 

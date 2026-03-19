@@ -45,4 +45,11 @@
     <string name="open_url">Open URL</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
     <string name="process_text_action_name">Clean URL (Léon)</string>
+    <!-- HomePage -->
+    <string name="from_clipboard_head">From Clipboard</string>
+    <string name="from_clipboard_text">Import URL directly from your clipboard</string>
+    <string name="from_inplace_head">In-place Text</string>
+    <string name="from_inplace_text">1. Select editable text in any app.\n2. Choose \"Clean URL (Léon)\" from context menu.</string>
+    <string name="from_share_head">From Share</string>
+    <string name="from_share_text">1. When sharing text, choose \"URL Cleaner\".\n2. Click on \"Share\" in this app to forward it to target app.</string>
 </resources>

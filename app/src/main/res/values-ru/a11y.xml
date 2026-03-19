@@ -19,4 +19,5 @@
 <resources>
     <string name="a11y_howto">Изображение приложения, объясняющего работу на смартфоне</string>
     <string name="a11y_back_navigation">Значок, который перемещает назад</string>
+    <string name="a11y_collapse">Up/Down Arrow Icon</string>
 </resources>

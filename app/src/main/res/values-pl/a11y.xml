@@ -19,4 +19,5 @@
 <resources>
     <string name="a11y_howto">Obraz aplikacji wyjaśniającej na smartfonie</string>
     <string name="a11y_back_navigation">Ikona do nawigacji wstecz</string>
+    <string name="a11y_collapse">Up/Down Arrow Icon</string>
 </resources>
