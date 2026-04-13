@@ -15,12 +15,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon
 
 import android.content.ComponentName
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -37,82 +38,100 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-	private val sourceText = mutableStateOf<String?>(null)
-	private var customTabsInitialized = false
+    private val sourceText = mutableStateOf<String?>(null)
+    private var customTabsInitialized = false
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		enableEdgeToEdge()
+        enableEdgeToEdge()
 
-		onIntent(intent)
+        onIntent(intent)
 
-		setContent {
-			AppTheme {
-				MainRouter(
-					sourceText = sourceText,
-					onResetClick = { sourceText.value = null },
-				)
-			}
-		}
+        setContent {
+            AppTheme {
+                MainRouter(sourceText = sourceText, onResetClick = { sourceText.value = null })
+            }
+        }
 
-		lifecycleScope.launch {
-			repeatOnLifecycle(Lifecycle.State.STARTED) {
-				AppDataStoreManager.customTabsEnabled.collect { customTabsEnabled ->
-					if (customTabsEnabled) {
-						setupCustomTabsService()
-					}
-				}
-			}
-		}
-	}
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                AppDataStoreManager.customTabsEnabled.collect { customTabsEnabled ->
+                    if (customTabsEnabled) {
+                        setupCustomTabsService()
+                    }
+                }
+            }
+        }
 
-	override fun onNewIntent(intent: Intent) {
-		super.onNewIntent(intent)
-		onIntent(intent)
-	}
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                AppDataStoreManager.protectScreenEnabled.collect { protectScreenEnabled ->
+                    if (protectScreenEnabled) {
+                        window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+                    } else {
+                        window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+                    }
 
-	// TODO: Pass all Intent extras
-	private fun onIntent(intent: Intent) {
-		sourceText.value = when (intent.action) {
-			Intent.ACTION_SEND ->
-				if (intent.type == MIME_TYPE_TEXT_PLAIN) {
-					intent.getStringExtra(Intent.EXTRA_TEXT)
-				} else {
-					null
-				}
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        setRecentsScreenshotEnabled(!protectScreenEnabled)
+                    }
+                }
+            }
+        }
+    }
 
-			Intent.ACTION_VIEW -> if (intent.scheme.orEmpty().startsWith("http")) {
-				intent.dataString
-			} else {
-				null
-			}
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        onIntent(intent)
+    }
 
-			else -> null
-		}
-	}
+    // TODO: Pass all Intent extras
+    private fun onIntent(intent: Intent) {
+        sourceText.value =
+            when (intent.action) {
+                Intent.ACTION_SEND ->
+                    if (intent.type == MIME_TYPE_TEXT_PLAIN) {
+                        intent.getStringExtra(Intent.EXTRA_TEXT)
+                    } else {
+                        null
+                    }
 
-	private fun setupCustomTabsService() {
-		if (customTabsInitialized) return
+                Intent.ACTION_VIEW ->
+                    if (intent.scheme.orEmpty().startsWith("http")) {
+                        intent.dataString
+                    } else {
+                        null
+                    }
 
-		val connection = object : CustomTabsServiceConnection() {
-			override fun onCustomTabsServiceConnected(name: ComponentName, client: CustomTabsClient) {
-				client.warmup(0)
-			}
+                else -> null
+            }
+    }
 
-			override fun onServiceDisconnected(name: ComponentName?) {
-			}
-		}
+    private fun setupCustomTabsService() {
+        if (customTabsInitialized) return
 
-		val packageName = CustomTabsClient.getPackageName(this, null)
-		if (packageName != null) {
-			CustomTabsClient.bindCustomTabsService(this, packageName, connection)
-		}
+        val connection =
+            object : CustomTabsServiceConnection() {
+                override fun onCustomTabsServiceConnected(
+                    name: ComponentName,
+                    client: CustomTabsClient,
+                ) {
+                    client.warmup(0)
+                }
 
-		customTabsInitialized = true
-	}
+                override fun onServiceDisconnected(name: ComponentName?) {}
+            }
 
-	private companion object {
-		private const val MIME_TYPE_TEXT_PLAIN = "text/plain"
-	}
+        val packageName = CustomTabsClient.getPackageName(this, null)
+        if (packageName != null) {
+            CustomTabsClient.bindCustomTabsService(this, packageName, connection)
+        }
+
+        customTabsInitialized = true
+    }
+
+    private companion object {
+        private const val MIME_TYPE_TEXT_PLAIN = "text/plain"
+    }
 }

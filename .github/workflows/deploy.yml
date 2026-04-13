@@ -24,8 +24,21 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+      - name: Cache Gradle
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Setup Ruby & Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3'
+          bundler-cache: true
 
       - name: Import GPG key for git-secret
         run: echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --import --batch --yes
@@ -37,7 +50,7 @@ jobs:
         run: git secret reveal -f
 
       - name: Deploy production version
-        run: ./gradlew assembleRelease publishReleaseBundle --track production --release-status completed
+        run: bundle exec fastlane deploy
 
       - name: Build changelog
         id: github_release

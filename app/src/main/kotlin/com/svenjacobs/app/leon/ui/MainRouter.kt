@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.ui
 
 import androidx.compose.runtime.Composable
@@ -31,46 +30,38 @@ import com.svenjacobs.app.leon.ui.screens.settings.SettingsSanitizersScreen
 
 @Composable
 fun MainRouter(
-	sourceText: State<String?>,
-	onResetClick: () -> Unit,
-	modifier: Modifier = Modifier,
+    sourceText: State<String?>,
+    onResetClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-	val navController = rememberNavController()
+    val navController = rememberNavController()
 
-	NavHost(
-		modifier = modifier,
-		navController = navController,
-		startDestination = Routes.MAIN,
-	) {
-		composable(Routes.MAIN) {
-			MainScreen(
-				sourceText = sourceText,
-				onNavigateToSettingsSanitizers = dropUnlessResumed {
-					navController.navigate(Routes.SETTINGS_SANITIZER)
-				},
-				onNavigateToSettingsLicenses = dropUnlessResumed {
-					navController.navigate(Routes.SETTINGS_LICENSES)
-				},
-				onResetClick = onResetClick,
-			)
-		}
+    NavHost(modifier = modifier, navController = navController, startDestination = Routes.MAIN) {
+        composable(Routes.MAIN) {
+            MainScreen(
+                sourceText = sourceText,
+                onNavigateToSettingsSanitizers =
+                    dropUnlessResumed { navController.navigate(Routes.SETTINGS_SANITIZER) },
+                onNavigateToSettingsLicenses =
+                    dropUnlessResumed { navController.navigate(Routes.SETTINGS_LICENSES) },
+                onResetClick = onResetClick,
+            )
+        }
 
-		composable(Routes.SETTINGS_SANITIZER) {
-			SettingsSanitizersScreen(
-				onBackClick = dropUnlessResumed { navController.popBackStack() },
-			)
-		}
+        composable(Routes.SETTINGS_SANITIZER) {
+            SettingsSanitizersScreen(
+                onBackClick = dropUnlessResumed { navController.popBackStack() }
+            )
+        }
 
-		composable(Routes.SETTINGS_LICENSES) {
-			SettingsLicensesScreen(
-				onBackClick = dropUnlessResumed { navController.popBackStack() },
-			)
-		}
-	}
+        composable(Routes.SETTINGS_LICENSES) {
+            SettingsLicensesScreen(onBackClick = dropUnlessResumed { navController.popBackStack() })
+        }
+    }
 }
 
 private object Routes {
-	const val MAIN = "main"
-	const val SETTINGS_SANITIZER = "settings_sanitizers"
-	const val SETTINGS_LICENSES = "settings_licenses"
+    const val MAIN = "main"
+    const val SETTINGS_SANITIZER = "settings_sanitizers"
+    const val SETTINGS_LICENSES = "settings_licenses"
 }

@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.startup
 
 import android.content.Context
@@ -24,24 +23,18 @@ import com.svenjacobs.app.leon.BuildConfig
 import com.svenjacobs.app.leon.inject.AppContainer.AppDataStoreManager
 import kotlinx.coroutines.runBlocking
 
-/**
- * Performs (initial) initialization of app.
- */
+/** Performs (initial) initialization of app. */
 @Suppress("unused")
 class AppInitializer : Initializer<Unit> {
 
-	override fun create(context: Context) {
-		val stethoHelper = StethoHelper()
+    override fun create(context: Context) {
+        val stethoHelper = StethoHelper()
 
-		stethoHelper.initialize(context)
+        stethoHelper.initialize(context)
 
-		runBlocking {
-			AppDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE)
-		}
-	}
+        runBlocking { AppDataStoreManager.setVersionCode(BuildConfig.VERSION_CODE) }
+    }
 
-	override fun dependencies() = listOf(
-		ContainerInitializer::class.java,
-		TimberInitializer::class.java,
-	)
+    override fun dependencies() =
+        listOf(ContainerInitializer::class.java, TimberInitializer::class.java)
 }

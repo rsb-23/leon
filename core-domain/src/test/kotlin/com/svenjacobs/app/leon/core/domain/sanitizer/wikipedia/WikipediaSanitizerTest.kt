@@ -15,42 +15,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.core.domain.sanitizer.wikipedia
 
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
 class WikipediaSanitizerTest :
-	WordSpec(
-		{
-			val sanitizer = WikipediaSanitizer()
+    WordSpec({
+        val sanitizer = WikipediaSanitizer()
 
-			"invoke" should {
+        "invoke" should
+            {
+                "clean en.wikipedia.org URLs" {
+                    sanitizer("https://en.wikipedia.org/wiki/Kerosene?wprov=sfla1") shouldBe
+                        "https://en.wikipedia.org/wiki/Kerosene"
+                }
+            }
 
-				"clean en.wikipedia.org URLs" {
-					sanitizer("https://en.wikipedia.org/wiki/Kerosene?wprov=sfla1") shouldBe
-						"https://en.wikipedia.org/wiki/Kerosene"
-				}
-			}
+        "matchesDomain" should
+            {
+                "match wikipedia.org" {
+                    sanitizer.matchesDomain("https://wikipedia.org") shouldBe true
+                }
 
-			"matchesDomain" should {
+                "match en.wikipedia.org" {
+                    sanitizer.matchesDomain("https://en.wikipedia.org") shouldBe true
+                }
 
-				"match wikipedia.org" {
-					sanitizer.matchesDomain("https://wikipedia.org") shouldBe true
-				}
+                "match m.en.wikipedia.org" {
+                    sanitizer.matchesDomain("https://de.m.wikipedia.org") shouldBe true
+                }
 
-				"match en.wikipedia.org" {
-					sanitizer.matchesDomain("https://en.wikipedia.org") shouldBe true
-				}
-
-				"match m.en.wikipedia.org" {
-					sanitizer.matchesDomain("https://de.m.wikipedia.org") shouldBe true
-				}
-
-				"don't match google.com" {
-					sanitizer.matchesDomain("https://google.com") shouldBe false
-				}
-			}
-		},
-	)
+                "don't match google.com" {
+                    sanitizer.matchesDomain("https://google.com") shouldBe false
+                }
+            }
+    })

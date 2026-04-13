@@ -2,6 +2,9 @@ name: Build & Verify
 
 on: [ pull_request, workflow_dispatch ]
 
+permissions:
+  pull-requests: write
+
 jobs:
   build:
     timeout-minutes: 30
@@ -17,15 +20,35 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+      - name: Cache Gradle
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
 
       - name: Build and test app
-        run: ./gradlew build
+        run: ./gradlew check build
 
       - uses: actions/upload-artifact@v7
+        id: upload-artifact
         with:
           name: Android artifacts
           path: |
             app/build/outputs/apk/**/*.apk
             app/build/outputs/bundle/**/*.aab
+
+      - name: Comment artifact link on pull request
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '📦 Build artifacts are available [here](${{ steps.upload-artifact.outputs.artifact-url }}).',
+            })

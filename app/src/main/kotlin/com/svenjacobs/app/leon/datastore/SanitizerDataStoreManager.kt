@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.datastore
 
 import android.content.Context
@@ -29,28 +28,22 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.Sanitizer
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-/**
- * Manages [Sanitizer] specific preferences stored via [DataStore].
- */
+/** Manages [Sanitizer] specific preferences stored via [DataStore]. */
 class SanitizerDataStoreManager(private val context: Context = AppContext) {
-	private val Context.dataStore by preferencesDataStore(name = "sanitizers")
+    private val Context.dataStore by preferencesDataStore(name = "sanitizers")
 
-	internal fun preferencesKey(id: String) = booleanPreferencesKey(name = "sanitizer_$id")
+    internal fun preferencesKey(id: String) = booleanPreferencesKey(name = "sanitizer_$id")
 
-	val data: Flow<Preferences>
-		get() = context.dataStore.data
+    val data: Flow<Preferences>
+        get() = context.dataStore.data
 
-	suspend fun setSanitizerEnabled(id: String, enabled: Boolean) {
-		val key = preferencesKey(id)
-		context.dataStore.edit {
-			it[key] = enabled
-		}
-	}
+    suspend fun setSanitizerEnabled(id: String, enabled: Boolean) {
+        val key = preferencesKey(id)
+        context.dataStore.edit { it[key] = enabled }
+    }
 
-	fun isSanitizerEnabled(id: String): Flow<Boolean?> {
-		val key = preferencesKey(id)
-		return context.dataStore.data.map {
-			it[key]
-		}
-	}
+    fun isSanitizerEnabled(id: String): Flow<Boolean?> {
+        val key = preferencesKey(id)
+        return context.dataStore.data.map { it[key] }
+    }
 }

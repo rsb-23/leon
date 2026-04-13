@@ -15,12 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.startup
 
 import androidx.startup.Initializer
 
 interface DistinctInitializer<T> : Initializer<T> {
 
-	override fun dependencies() = emptyList<Class<out Initializer<*>>>()
+    override fun dependencies() = emptyList<Class<out Initializer<*>>>()
 }

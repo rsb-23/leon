@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.core.domain.sanitizer.reddit
 
 import android.content.Context
@@ -28,21 +27,20 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class RedditMailSanitizer : Sanitizer {
 
-	override val id = SanitizerId("reddit_mail")
+    override val id = SanitizerId("reddit_mail")
 
-	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = context.getString(R.string.sanitizer_reddit_mail),
-	)
+    override fun getMetadata(context: Context) =
+        Sanitizer.Metadata(name = context.getString(R.string.sanitizer_reddit_mail))
 
-	override fun invoke(input: String): String {
-		val encoded = URL_REGEX.find(input)?.groupValues?.getOrNull(1) ?: return input
-		val url = decodeUrl(encoded)
-		return RegexFactory.AllParameters.replace(url, "")
-	}
+    override fun invoke(input: String): String {
+        val encoded = URL_REGEX.find(input)?.groupValues?.getOrNull(1) ?: return input
+        val url = decodeUrl(encoded)
+        return RegexFactory.AllParameters.replace(url, "")
+    }
 
-	override fun matchesDomain(input: String) = input.matchesDomain("click.redditmail.com")
+    override fun matchesDomain(input: String) = input.matchesDomain("click.redditmail.com")
 
-	private companion object {
-		private val URL_REGEX = Regex("click\\.redditmail\\.com/[^/]+/(.+)")
-	}
+    private companion object {
+        private val URL_REGEX = Regex("click\\.redditmail\\.com/[^/]+/(.+)")
+    }
 }

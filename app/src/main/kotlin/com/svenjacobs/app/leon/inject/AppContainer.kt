@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.inject
 
 import com.svenjacobs.app.leon.datastore.AppDataStoreManager
@@ -23,6 +22,6 @@ import com.svenjacobs.app.leon.datastore.SanitizerDataStoreManager
 
 object AppContainer {
 
-	val AppDataStoreManager: AppDataStoreManager by lazy { AppDataStoreManager() }
-	val SanitizerDataStoreManager: SanitizerDataStoreManager by lazy { SanitizerDataStoreManager() }
+    val AppDataStoreManager: AppDataStoreManager by lazy { AppDataStoreManager() }
+    val SanitizerDataStoreManager: SanitizerDataStoreManager by lazy { SanitizerDataStoreManager() }
 }

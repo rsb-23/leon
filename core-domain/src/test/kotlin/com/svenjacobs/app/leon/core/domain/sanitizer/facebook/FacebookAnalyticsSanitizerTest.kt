@@ -15,27 +15,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.core.domain.sanitizer.facebook
 
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 
 class FacebookAnalyticsSanitizerTest :
-	WordSpec(
-		{
+    WordSpec({
+        "invoke" should
+            {
+                "remove \"fb_*\", \"fbclid\", \"sfnsn\" and \"cHash\" parameters" {
+                    val sanitizer = FacebookAnalyticsSanitizer()
 
-			"invoke" should {
+                    val result =
+                        sanitizer("https://www.example.com?fb_abc=123&fbclid=12345&sfnsn=scwspmo")
 
-				"remove \"fb_*\" and \"fbclid\" parameters" {
-					val sanitizer = FacebookAnalyticsSanitizer()
+                    result shouldBe "https://www.example.com"
+                }
 
-					val result = sanitizer(
-						"https://www.example.com?fb_abc=123&fbclid=12345&sfnsn=scwspmo",
-					)
+                "remove \"cHash\" parameter" {
+                    val sanitizer = FacebookAnalyticsSanitizer()
 
-					result shouldBe "https://www.example.com"
-				}
-			}
-		},
-	)
+                    val result =
+                        sanitizer(
+                            "https://www.spiegel.de/de?fbclid=IwY2xjawOxH_hleHRuA2FlbQIxMQ&cHash=137531e2404b087d877282a"
+                        )
+
+                    result shouldBe "https://www.spiegel.de/de"
+                }
+            }
+    })

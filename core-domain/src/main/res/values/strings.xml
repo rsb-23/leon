@@ -18,6 +18,7 @@
 
 <resources>
     <string name="sanitizer_aliexpress_name" translatable="false">AliExpress</string>
+    <string name="sanitizer_bluesky_redirect_name">Bluesky Redirect</string>
     <string name="sanitizer_amazon_name" translatable="false">Amazon</string>
     <string name="sanitizer_amazon_product_name">Amazon Products</string>
     <string name="sanitizer_aol_search_name">AOL Search</string>
@@ -27,25 +28,32 @@
     <string name="sanitizer_change_name" translatable="false">Change</string>
     <string name="sanitizer_cx_name" translatable="false">CX Analytics</string>
     <string name="sanitizer_ebay_name" translatable="false">eBay</string>
+    <string name="sanitizer_echobox_name" translatable="false">Echobox</string>
     <string name="sanitizer_elfinanciero_name" translatable="false">ElFinanciero</string>
     <string name="sanitizer_empty_parameters_name">Empty Parameters</string>
     <string name="sanitizer_facebook_analytics_name" translatable="false">Facebook Analytics</string>
     <string name="sanitizer_facebook_name" translatable="false">Facebook.com</string>
     <string name="sanitizer_fastcompany" translatable="false">Fast Company</string>
     <string name="sanitizer_flipkart_name" translatable="false">Flipkart</string>
+    <string name="sanitizer_adobe_marketo_engage_name" translatable="false">Adobe Marketo Engage</string>
     <string name="sanitizer_ga_name" translatable="false">Google Analytics</string>
     <string name="sanitizer_georiot_name" translatable="false">GeoRiot</string>
     <string name="sanitizer_google_ads_name" translatable="false">Google Ads</string>
+    <string name="sanitizer_google_maps_name" translatable="false">Google Maps</string>
     <string name="sanitizer_google_play_store_name" translatable="false">Google Play Store</string>
     <string name="sanitizer_google_search_name">Google Search</string>
     <string name="sanitizer_heise" translatable="false">heise online</string>
     <string name="sanitizer_ikea_name" translatable="false">IKEA</string>
+    <string name="sanitizer_ilmessaggero_name" translatable="false">Il Messaggero</string>
     <string name="sanitizer_instagram_name" translatable="false">Instagram</string>
     <string name="sanitizer_jdoqocy_name" translatable="false">Jdoqocy</string>
     <string name="sanitizer_jodel_name" translatable="false">Jodel</string>
     <string name="sanitizer_kogan_name" translatable="false">Kogan</string>
+    <string name="sanitizer_latinatoday_name" translatable="false">Latina Today</string>
     <string name="sanitizer_lazada" translatable="false">Lazada</string>
+    <string name="sanitizer_linkedin_name" translatable="false">LinkedIn</string>
     <string name="sanitizer_linksynergy_name" translatable="false">LinkSynergy</string>
+    <string name="sanitizer_meta_ad_name" translatable="false">Meta Ads</string>
     <string name="sanitizer_mydealz_parameters_name">MyDealz Parameters</string>
     <string name="sanitizer_mydealz_redirects_name">MyDealz Redirects</string>
     <string name="sanitizer_netflix_name" translatable="false">Netflix</string>
@@ -56,6 +64,7 @@
     <string name="sanitizer_reddit_out" translatable="false">Reddit (out.reddit.com)</string>
     <string name="sanitizer_salesforce_name" translatable="false">Salesforce</string>
     <string name="sanitizer_session_ids_name" translatable="false">Session IDs</string>
+    <string name="sanitizer_snapchat_name" translatable="false">Snapchat</string>
     <string name="sanitizer_shopee" translatable="false">Shopee</string>
     <string name="sanitizer_spiegel_name" translatable="false">Spiegel</string>
     <string name="sanitizer_spotify_name" translatable="false">Spotify</string>
@@ -66,6 +75,7 @@
     <string name="sanitizer_webtrekk_name" translatable="false">Webtrekk</string>
     <string name="sanitizer_wikipedia_name" translatable="false">Wikipedia</string>
     <string name="sanitizer_x_name" translatable="false">X (Twitter)</string>
+    <string name="sanitizer_yahoo_referrer_name" translatable="false">Yahoo Referrer</string>
     <string name="sanitizer_yahoo_search_name">Yahoo Search</string>
     <string name="sanitizer_yandex" translatable="false">Yandex</string>
     <string name="sanitizer_youtube_music_name" translatable="false">YouTube Music</string>

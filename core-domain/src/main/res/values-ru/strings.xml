@@ -17,12 +17,13 @@
   -->
 
 <resources>
-    <string name="sanitizer_amazon_product_name">Amazon Products</string> <!-- TODO: translate -->
-    <string name="sanitizer_aol_search_name">AOL Search</string> <!-- TODO: translate -->
+    <string name="sanitizer_amazon_product_name">Продукты Amazon</string>
+    <string name="sanitizer_aol_search_name">Поиск AOL</string>
     <string name="sanitizer_empty_parameters_name">Пустые параметры</string>
-    <string name="sanitizer_google_search_name">Google Search</string> <!-- TODO: translate -->
-    <string name="sanitizer_mydealz_parameters_name">MyDealz Parameters</string>
-    <string name="sanitizer_mydealz_redirects_name">MyDealz Redirects</string> <!-- TODO: translate -->
-    <string name="sanitizer_yahoo_search_name">Yahoo Search</string> <!-- TODO: translate -->
-    <string name="sanitizer_youtube_redirect_name">YouTube Redirect</string>
+    <string name="sanitizer_google_search_name">Поиск Google</string>
+    <string name="sanitizer_mydealz_parameters_name">Параметры MyDealz</string>
+    <string name="sanitizer_mydealz_redirects_name">Перенаправления MyDealz</string>
+    <string name="sanitizer_yahoo_search_name">Поиск Yahoo</string>
+    <string name="sanitizer_youtube_redirect_name">Перенаправление YouTube</string>
+    <string name="sanitizer_bluesky_redirect_name">Перенаправление Bluesky</string>
 </resources>

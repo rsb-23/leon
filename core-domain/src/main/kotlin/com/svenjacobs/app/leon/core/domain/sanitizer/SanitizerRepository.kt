@@ -15,22 +15,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.core.domain.sanitizer
 
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.Flow
 
-/**
- * Repository for enabled and disabling [Sanitizers][Sanitizer].
- */
+/** Repository for enabled and disabling [Sanitizers][Sanitizer]. */
 interface SanitizerRepository {
 
-	data class SanitizerState(val id: SanitizerId, val enabled: Boolean)
+    data class SanitizerState(val id: SanitizerId, val enabled: Boolean)
 
-	val state: Flow<ImmutableList<SanitizerState>>
+    val state: Flow<ImmutableList<SanitizerState>>
 
-	suspend fun isEnabled(id: SanitizerId): Boolean
+    suspend fun isEnabled(id: SanitizerId): Boolean
 
-	suspend fun setEnabled(id: SanitizerId, enabled: Boolean)
+    suspend fun setEnabled(id: SanitizerId, enabled: Boolean)
 }

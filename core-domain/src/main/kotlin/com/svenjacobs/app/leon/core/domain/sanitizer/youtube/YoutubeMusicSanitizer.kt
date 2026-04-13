@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.core.domain.sanitizer.youtube
 
 import android.content.Context
@@ -25,20 +24,19 @@ import com.svenjacobs.app.leon.core.domain.sanitizer.SanitizerId
 
 class YoutubeMusicSanitizer : Sanitizer {
 
-	override val id = SanitizerId("youtube_music")
+    override val id = SanitizerId("youtube_music")
 
-	override fun getMetadata(context: Context) = Sanitizer.Metadata(
-		name = context.getString(R.string.sanitizer_youtube_music_name),
-	)
+    override fun getMetadata(context: Context) =
+        Sanitizer.Metadata(name = context.getString(R.string.sanitizer_youtube_music_name))
 
-	override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
+    override fun matchesDomain(input: String) = DOMAIN_REGEX.containsMatchIn(input)
 
-	override fun invoke(input: String): String {
-		val firstGroup = DOMAIN_REGEX.find(input)?.groups?.get(1) ?: return input
-		return input.replaceRange(firstGroup.range, "")
-	}
+    override fun invoke(input: String): String {
+        val firstGroup = DOMAIN_REGEX.find(input)?.groups?.get(1) ?: return input
+        return input.replaceRange(firstGroup.range, "")
+    }
 
-	private companion object {
-		private val DOMAIN_REGEX = Regex("(?:https?://)?(music\\.)youtube\\.com")
-	}
+    private companion object {
+        private val DOMAIN_REGEX = Regex("(?:https?://)?(music\\.)youtube\\.com")
+    }
 }

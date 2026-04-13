@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.svenjacobs.app.leon.ui.screens.main.views
 
 import androidx.compose.foundation.Image
@@ -29,12 +28,13 @@ import com.svenjacobs.app.leon.R
 
 @Composable
 internal fun BackgroundImage(modifier: Modifier = Modifier) {
-	Image(
-		modifier = modifier.fillMaxSize(),
-		painter = painterResource(
-			if (BuildConfig.DEBUG) R.drawable.background_bug else R.drawable.background_broom,
-		),
-		contentDescription = null,
-		contentScale = ContentScale.Crop,
-	)
+    Image(
+        modifier = modifier.fillMaxSize(),
+        painter =
+            painterResource(
+                if (BuildConfig.DEBUG) R.drawable.background_bug else R.drawable.background_broom
+            ),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+    )
 }
